@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">    </script>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            height: 50px;
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+
+<body>
+    <table id='mytable'>
+        <tr>
+            <th>Student Name</th>
+            <th>Student ID</th>
+            <th>Subject1</th>
+            <th>Subject2</th>
+            <th>Subject3</th>
+            <th>Subject4</th>
+            <th>Subject5</th>
+
+
+        </tr>
+        <div>
+        </div>
+
+    </table>
+    <script>
+        $(document).ready(function () {
+
+
+
+            var apiUrl = 'http://localhost:5000/students';
+            fetch(apiUrl).then(response => {
+                return response.json();
+            }).then(obj => {
+                obj.map(val => {
+                    var tr = "<tr>" +
+                        "<td>" + val["name"] + "</td>" +
+                        "<td>" + val["id"] + "</td>" +
+                        "<td>" + val["sub1"] + "</td>" +
+                        "<td>" + val["sub2"] + "</td>" +
+                        "<td>" + val["sub3"] + "</td>" +
+                        "<td>" + val["sub4"] + "</td>" +
+                        "<td>" + val["sub5"] + "</td></tr>";
+                    $("#mytable").append(tr);
+                })
+                console.log(val);
+            }).catch(err => {
+                // Do something for an error here
+            });
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>
